@@ -16,6 +16,18 @@ public class Main {
 									{0,0,0,0,30},
 									{0,0,0,0,20},
 									{30,50,20,10,0}};
+	
+	/*private static String[] infoTop = {"U1","U2","U3","U4","Us"};
+	private static String[] infoLeft = {"R1","R2","R3","R4"};
+	private static float[][] matriceCouts = {{7,5,8,6,0},
+		{2,4,5,1,0},
+		{9,10,7,2,0},
+		{4,7,1,8,0}};
+	private static float[][] matriceCalculs = {{0,0,0,0,0,20},
+									{0,0,0,0,0,30},
+									{0,0,0,0,0,10},
+									{0,0,0,0,0,40},
+									{25,10,30,10,25,0}};*/
 
 	public static void main(String[] args) {
 		System.out.println("La méthode de calcul choisi est \"" + methode  + "\"");
