@@ -205,7 +205,7 @@ public class Vogel {
 				if(matriceCouts[i][index] < val && matriceCouts[i][index] != 0)
 				{
 					idexx = i;
-					val = matriceCouts[index][i];
+					val = matriceCouts[i][index];
 				}
 			}
 			

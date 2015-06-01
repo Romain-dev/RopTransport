@@ -7,7 +7,7 @@ public class Main {
 	//NORD_WEST ou VOGEL
 	private static String methode = VOGEL;
 	
-	private static String[] infoTop = {"M","B","H","N"};
+/*	private static String[] infoTop = {"M","B","H","N"};
 	private static String[] infoLeft = {"SP","RJ","D "};
 	private static float[][] matriceCouts = {{1,5,2,10},
 									  {6,3,8,5},
@@ -16,7 +16,7 @@ public class Main {
 									{0,0,0,0,30},
 									{0,0,0,0,20},
 									{30,50,20,10,0}};
-	/*
+	*/
 	private static String[] infoTop = {"U1","U2","U3","U4","Us"};
 	private static String[] infoLeft = {"R1","R2","R3","R4"};
 	private static float[][] matriceCouts = {{7,5,8,6,0},
@@ -28,7 +28,7 @@ public class Main {
 									{0,0,0,0,0,10},
 									{0,0,0,0,0,40},
 									{25,10,30,10,25,0}};
-*/
+
 	public static void main(String[] args) {
 		System.out.println("La méthode de calcul choisi est \"" + methode  + "\"");
 		
