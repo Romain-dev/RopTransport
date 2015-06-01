@@ -44,6 +44,11 @@ public class Vogel {
 						}
 					}	
 				}
+				
+				if(val == 1000000.0)
+				{
+					NordWest.runNordWest(matriceCalculs);
+				}
 			}
 
 			System.out.println();
