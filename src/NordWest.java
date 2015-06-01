@@ -24,7 +24,7 @@ public class NordWest {
 	}
 	
 	public static boolean isRessourcesAllouables(float[][] matriceCalculs) {
-		
+		//Recherche si tout est à zéro dans la dernière ligne. 
 		for(int i = 0; i < matriceCalculs[0].length; i++) {
 			if(matriceCalculs[matriceCalculs.length-1][i] > 0)
 				return true;
