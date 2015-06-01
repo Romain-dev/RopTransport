@@ -10,7 +10,7 @@ public class Vogel {
 	
 	public static void runVogel(float[][] matriceCalculsv,float[][] matriceCoutsv) {
 		matriceCalculs = matriceCalculsv;
-		matriceCouts = matriceCoutsv;
+		matriceCouts = cloneMatrice(matriceCoutsv);
 		calculMatriceInverseDesCouts();
 		
 		while(isRessourcesAllouables(matriceCalculs)) {
@@ -24,7 +24,28 @@ public class Vogel {
 			afficheMatriceCouts();
 			afficherMatriceRegrets();
 			
-			int[] coordonnes = getCoordonnes();
+			int[] coordonnes = new int[2];
+			
+			if(isRegrets())
+			{
+				coordonnes = getCoordonnes();
+			}
+			else
+			{
+				float val = 1000000;
+				
+				for(int i = 0; i < matriceCouts.length; i++) {
+					for(int j = 0; j < matriceCouts[0].length; j++) {
+						if(matriceCouts[i][j] != 0 && matriceCouts[i][j] < val)
+						{
+							coordonnes[0] = i;
+							coordonnes[1] = j;
+							val = matriceCouts[i][j];
+						}
+					}	
+				}
+			}
+
 			System.out.println();
 			System.out.println("coordonnées:"+ coordonnes[0] + " "+ coordonnes[1]);
 			System.out.println();
@@ -151,7 +172,7 @@ public class Vogel {
 		{
 			if(matriceDesRegrets[matriceDesRegrets.length-1][i] > valeur)
 			{
-				valeur = matriceDesRegrets[i][matriceDesRegrets[0].length-1];
+				valeur = matriceDesRegrets[matriceDesRegrets.length-1][i];
 				index = i;
 				isVertical = false;
 			}
@@ -234,5 +255,37 @@ public class Vogel {
 				}
 			}
 		}
+	}
+	
+	public static boolean isRegrets() {
+		for(int i = 0; i < matriceCouts.length;i++)
+		{
+			if(matriceDesRegrets[i][matriceDesRegrets[0].length-1] != 0)
+			{
+				return true;
+			}
+		}
+		
+		for(int i = 0; i < matriceCouts[0].length;i++)
+		{
+			if(matriceDesRegrets[matriceDesRegrets.length-1][i] != 0)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static float[][] cloneMatrice(float[][] matrice) {
+		float[][] clone = new float[matrice.length][matrice[0].length];
+		
+		for(int i = 0; i < matrice.length; i++) {
+			for(int j = 0; j < matrice[0].length; j++) {
+				clone[i][j] = matrice[i][j];
+			}
+		}
+		
+		return clone;
 	}
 }    	
