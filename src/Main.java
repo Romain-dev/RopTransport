@@ -33,20 +33,24 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("La méthode de calcul choisi est \"" + methode  + "\"");
 		
+		//Le total des colonnes est egal au total des lignes
 		if (verifMatrice()==true)
 		{	
 			afficheMatriceCouts();
 			afficheMatriceCalculs();
 		}
+		//Il faut ajouter des ressources factices
 		else
 		{
 			modifMat();
 		}
 		
 		if(methode == NORD_WEST) {
+			//Resolution avec NordWest
 			NordWest.runNordWest(matriceCalculs);
 		}
 		else if(methode == VOGEL) {
+			//Resolution avec Vogel
 			Vogel.runVogel(matriceCalculs,matriceCouts);
 		}
 		

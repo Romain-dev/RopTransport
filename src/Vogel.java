@@ -8,11 +8,13 @@ public class Vogel {
 	private static float[][] matriceCalculs;
 	private static float[][] matriceCouts;
 	
+	//Permet de resoudre le probleme avec Vogel
 	public static void runVogel(float[][] matriceCalculsv,float[][] matriceCoutsv) {
 		matriceCalculs = matriceCalculsv;
 		matriceCouts = cloneMatrice(matriceCoutsv);
 		calculMatriceInverseDesCouts();
 		
+		//Tant qu'il reste des ressources
 		while(isRessourcesAllouables(matriceCalculs)) {
 			nettoyerMatriceCouts();
 			calculMatriceInverseDesCouts();
@@ -26,10 +28,12 @@ public class Vogel {
 			
 			int[] coordonnes = new int[2];
 			
+			//IL y a des regrets
 			if(isRegrets())
 			{
 				coordonnes = getCoordonnes();
 			}
+			//Plus de regrets, mais il reste des ressources
 			else
 			{
 				float val = 1000000;
@@ -55,12 +59,14 @@ public class Vogel {
 			System.out.println("coordonnées:"+ coordonnes[0] + " "+ coordonnes[1]);
 			System.out.println();
 			
+			//Une resssource ligne passe a 0
 			if(matriceCalculs[coordonnes[0]][matriceCalculs[0].length-1] >= matriceCalculs[matriceCalculs.length-1][coordonnes[1]])
 			{
 				matriceCalculs[coordonnes[0]][matriceCalculs[0].length-1] -= matriceCalculs[matriceCalculs.length-1][coordonnes[1]];
 				matriceCalculs[coordonnes[0]][coordonnes[1]] += matriceCalculs[matriceCalculs.length-1][coordonnes[1]];
 				matriceCalculs[matriceCalculs.length-1][coordonnes[1]] = 0;
 			}
+			//Une resssource colonne passe a 0
 			else
 			{
 				matriceCalculs[matriceCalculs.length-1][coordonnes[1]] -= matriceCalculs[coordonnes[0]][matriceCalculs[0].length-1];
@@ -73,6 +79,7 @@ public class Vogel {
 		}
 	}
 	
+	//Verifie s'il reste des ressources a allouer
 	public static boolean isRessourcesAllouables(float[][] matriceCalculs) {
 		
 		for(int i = 0; i < matriceCalculs[0].length; i++) {
@@ -83,6 +90,7 @@ public class Vogel {
 		return false;
 	}
 	
+	//Inverse la matrice des couts
 	public static void calculMatriceInverseDesCouts() {
 		matriceInverseDesCouts = new float[matriceCouts[0].length][matriceCouts.length];
 		
@@ -93,6 +101,7 @@ public class Vogel {
 		}
 	}
 	
+	//Calcul la matrice des regrets
 	public static void affecterMatriceRegrets()
 	{
 		matriceDesRegrets = new float[matriceCalculs.length][matriceCalculs[0].length];
@@ -118,6 +127,8 @@ public class Vogel {
 		}
 	}
 	
+	//Retourne la ligne en enlevant les 0 (utilise pour calculer la difference entre
+	//les deux plus petits elements differents de 0.
 	public static float[] copierLigneEtEnleverZero(float[] ligne) {
 		int total = 0;
 		for(int i = 0; i < ligne.length; i++)
@@ -157,6 +168,7 @@ public class Vogel {
 		}
 	}
 	
+	//Donne les cordonnes du prochain coup avec Vogel
 	public static int[] getCoordonnes() {
 		int[] result = new int[2];
 		
@@ -183,6 +195,7 @@ public class Vogel {
 			}
 		}
 		
+		//Le regret max est sur la ligne
 		if(isVertical) 
 		{
 			int idexx = -1;
@@ -200,6 +213,7 @@ public class Vogel {
 			result[0] = index;
 			result[1] = idexx;
 		}
+		//Le regret max est sur la colonne
 		else
 		{
 			int idexx = -1;
@@ -238,6 +252,7 @@ public class Vogel {
 		}
 	}
 	
+	//Vide la matrice des couts
 	public static void nettoyerMatriceCouts() {
 		for(int i = 0; i < matriceCouts.length;i++)
 		{
@@ -262,6 +277,7 @@ public class Vogel {
 		}
 	}
 	
+	//Permet de savoir s'il y a des regrets utilisables
 	public static boolean isRegrets() {
 		for(int i = 0; i < matriceCouts.length;i++)
 		{
@@ -282,6 +298,7 @@ public class Vogel {
 		return false;
 	}
 	
+	//Clone la matrice
 	public static float[][] cloneMatrice(float[][] matrice) {
 		float[][] clone = new float[matrice.length][matrice[0].length];
 		
